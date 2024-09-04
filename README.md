@@ -2,6 +2,8 @@
 ## Contents
 * [Introduction](#Introduction "Goto Introduction")
 * [AWS Services Used](#AWS-Services-Used "Goto AWS Services Used")
+* [Security Groups](#Security-Groups "Goto Security Groups")
+* [EC2 Instances](#EC2-Instances "Goto EC2 Instances")
 
 ## Introduction
 Using lift and shift strategy, rearchitecting on-premises application elements, leveraging cloud services and optimizations that provide the most significant benefits.
@@ -55,6 +57,28 @@ After creating this SG, making a change in inbound rules(For all these services 
 ![image](https://github.com/user-attachments/assets/e7a6f5ab-e294-4668-99eb-1b2bf6f7a966)
 Allowing access from my IP
 ![image](https://github.com/user-attachments/assets/42fa8a2a-f3c5-4f60-9aa4-93935315b583)
+
+## EC2 Instances
+Using scripts in `/userdata` directory
+![image](https://github.com/user-attachments/assets/4da975c1-5e53-46ac-8517-ffacdbb5d3ce)
+Checking each instance by logging in using-
+
+```
+Check connect tab before this:
+ssh -i "web-key.pem" ec2-user@public-ip-of-instance
+e.g. ssh -i /d/Users/Vinayak/Downloads/web-key.pem ec2-user@54.90.94.104
+
+systemctl status service-name
+
+Or we can use:
+ss -tunlp | grep default-port
+e.g. for memcached: ss -tunlp | grep 11211 
+```
+For MySQL, checking tables-
+```
+mysql -u admin -padmin123 accounts
+show tables;
+```
 
 
 

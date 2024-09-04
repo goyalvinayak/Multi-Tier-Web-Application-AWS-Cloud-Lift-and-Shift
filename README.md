@@ -80,6 +80,10 @@ mysql -u admin -padmin123 accounts
 show tables;
 ```
 
+## Building and Deploying Artifacts
+#### Creating a S3 bucket
+
+
 
 
 

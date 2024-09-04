@@ -1,4 +1,4 @@
-# Hosting and Running a multi tier web application on AWS Cloud 
+# Hosting and Running a Multi Tier Web Application on AWS Cloud 
 ## Contents
 * [Introduction](#Introduction "Goto Introduction")
 * [AWS Services Used](#AWS-Services-Used "Goto AWS Services Used")
@@ -39,5 +39,25 @@ Using lift and shift strategy, rearchitecting on-premises application elements, 
 10. Map ELB endpoint to website name in GoDaddy DNS
 11. Verify
 12. Build Autoscaling group for Tomcat Instance
+
+## Security Groups
+#### For Elastic Load Balancer(ELB)
+![image](https://github.com/user-attachments/assets/ff16a43d-b818-4827-a38b-b71e46ec6081)
+#### For Tomcat Instance
+Source- From security group of ELB
+![image](https://github.com/user-attachments/assets/2293a9a9-fb93-4088-9ce8-9d5716d0a31b)
+#### For Backend Srvices
+Source- From secrity group of Application(Tomcat)
+
+Using default IPs for memecache and rabbitMQ
+![image](https://github.com/user-attachments/assets/33154bb3-40c9-4135-8239-dfa32c0534d8)
+After creating this SG, making a change in inbound rules(For all these services because they will interact to each other also)
+![image](https://github.com/user-attachments/assets/e7a6f5ab-e294-4668-99eb-1b2bf6f7a966)
+Allowing access from my IP
+![image](https://github.com/user-attachments/assets/42fa8a2a-f3c5-4f60-9aa4-93935315b583)
+
+
+
+
 
     

@@ -6,7 +6,8 @@
 * [EC2 Instances](#EC2-Instances "Goto EC2 Instances") 
 * [Hosted Zones(Amazon Route53)](#Hosting-Zones "Goto Hosting Zones(Amazon Route53)")
 * [Building and Deploying Artifacts](#Building-and-Deploying-Artifacts "Goto Building and Deploying Artifacts")
-* [Load Balancer and DNS](#Load-Balancer-and-DNS "Goto Load Balancer and DNS") 
+* [Load Balancer and DNS](#Load-Balancer-and-DNS "Goto Load Balancer and DNS")
+* [Load Balancer and DNS](#Load-Balancer-and-DNS "Goto Load Balancer and DNS")
 
 ## Introduction
 Using lift and shift strategy, rearchitecting on-premises application elements, leveraging cloud services and optimizations that provide the most significant benefits.
@@ -183,6 +184,38 @@ We can login to webiste(User-admin_vp password-admin_vp)
 Checking our services working or not-
 ![image](https://github.com/user-attachments/assets/f0802aa0-5aba-47fb-8c2a-00d5eccb7a9b)
 ![image](https://github.com/user-attachments/assets/4b81e5e4-2d9e-4dd5-b85f-76724bc779c9)
+
+## Autoscaling
+#### Creating AMI
+Creating an AMI of our app instance.
+![image](https://github.com/user-attachments/assets/154c67e6-e5fa-4de4-b42d-409f8ac530f2)
+
+#### Creating launch template 
+This launch template will be used by Autscaling group to create new instances when scaling up. Making it after our AMI is available because I will use this AMI to create this template.
+
+* Settings-
+  * Security Group- same sg thet was created for app
+  * Resource Tags- Name(Key), project-app(Value)
+* Advance Settings- 
+  * IAM instance profile- same IAM role that was created for app
+![image](https://github.com/user-attachments/assets/ff6ff644-08f6-46ac-ace6-d321e6c76d5f)
+
+#### Autoscaling Groups
+* Availability Zones and subnets- Choosing all
+* Choosing the existing load balancer target groups
+* Turning on ELB heath checks
+* Desired Capacity- 1
+* Maximum Capacity- 4
+* Automatic Scaling- Making a policy
+  * Metric Type- Average CPU Utilisation
+  * Target Value- 50
+![image](https://github.com/user-attachments/assets/1f4ae4af-0adc-4a1d-9af8-08bc7d51ea96)
+![image](https://github.com/user-attachments/assets/435959dc-9fd8-4113-a670-1e21cbffdb11)
+
+
+
+
+
 
 
 

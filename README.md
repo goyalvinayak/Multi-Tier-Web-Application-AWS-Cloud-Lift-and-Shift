@@ -6,6 +6,7 @@
 * [EC2 Instances](#EC2-Instances "Goto EC2 Instances") 
 * [Hosted Zones(Amazon Route53)](#Hosting-Zones "Goto Hosting Zones(Amazon Route53)")
 * [Building and Deploying Artifacts](#Building-and-Deploying-Artifacts "Goto Building and Deploying Artifacts")
+* [Load Balancer and DNS](#Load-Balancer-and-DNS "Goto Load Balancer and DNS") 
 
 ## Introduction
 Using lift and shift strategy, rearchitecting on-premises application elements, leveraging cloud services and optimizations that provide the most significant benefits.
@@ -154,6 +155,41 @@ rm -rf /var/lib/tomcat9/webapps/ROOT   \\Removing any file present in webapps fo
 cp /tmp/vprofile-v2.war /var/lib/tomcat9/webapps/ROOT.war    \\Copying our artifact file to tomcat folder
 systemctl start tomcat9   \\After this command executes, a new ROOT folder will be created extracting ROOT.war
 ```
+
+To check if our website is up and running-
+```
+public-IP-of-app-instance:8080
+eg. 44.207.3.216:8080
+```
+
+## Load Balancer and DNS
+#### Creating Target Group
+Choose target type as Instance, name the target group, provide the port no. where app is running and health check path which is `/login` in my case, and we have to choose override option in advanced health settings and change the port no. to 8080 also. Then select the instance and provide port no. there also and then click create target group.
+![image](https://github.com/user-attachments/assets/e89b28e0-308c-45d0-9a26-8e26da86eba3)
+
+#### Creating Load Balancer
+Load Balancer will route the traffic to this target group.
+![image](https://github.com/user-attachments/assets/3608f58c-d4e7-4633-8178-adb180644d67)
+
+Now, copying the DNS name and creating a new DNS record in our website DNS management-
+![image](https://github.com/user-attachments/assets/797a31c5-1943-4d5c-899f-94c5aa0f9cb1)
+ 
+After waiting 10-15 mins, website will be up and running-
+![image](https://github.com/user-attachments/assets/3a365c25-802d-4121-b39c-49405cdbe85f)
+
+We can login to webiste(User-admin_vp password-admin_vp)
+![image](https://github.com/user-attachments/assets/60360fa4-dbe9-44bb-bfd4-6fb9b80f4661)
+
+Checking our services working or not-
+![image](https://github.com/user-attachments/assets/f0802aa0-5aba-47fb-8c2a-00d5eccb7a9b)
+![image](https://github.com/user-attachments/assets/4b81e5e4-2d9e-4dd5-b85f-76724bc779c9)
+
+
+
+
+
+
+
 
 
 
